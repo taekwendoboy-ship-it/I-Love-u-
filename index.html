@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>For Urmi 💖</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;background:radial-gradient(circle at 50% 15%,#ffd9ea,#ff72aa 35%,#c51d61 72%,#5b0b35);display:grid;place-items:center}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle,rgba(255,255,255,.18) 1px,transparent 2px);background-size:32px 32px;opacity:.35}
+.card{width:min(92vw,520px);min-height:590px;padding:35px 25px;border:1px solid rgba(255,255,255,.45);border-radius:32px;background:rgba(255,255,255,.14);backdrop-filter:blur(20px);box-shadow:0 25px 80px #45002288;text-align:center;position:relative;z-index:3}
+.heart{font-size:78px;animation:pulse 1.2s infinite;filter:drop-shadow(0 12px 18px #68002c66)}
+h1{font-size:clamp(30px,8vw,48px);margin:12px 0 6px}p{font-size:18px;line-height:1.5}
+.question{font-size:clamp(23px,6vw,34px);font-weight:900;margin:32px 0}
+.arena{height:170px;position:relative}
+button{border:0;border-radius:999px;padding:16px 30px;font-size:18px;font-weight:900;box-shadow:0 10px 25px #45002255;touch-action:manipulation}
+#yes{position:absolute;left:50%;top:30px;transform:translateX(-115%);background:#fff;color:#d21e61}
+#no{position:absolute;left:50%;top:30px;transform:translateX(15%);background:#a8124e;color:#fff;transition:.14s}
+.note{font-size:13px;opacity:.8}
+.hidden{display:none}.big{font-size:95px;animation:pulse .8s infinite}
+#success{animation:pop .7s ease}
+.reset{background:#ffffff22;color:#fff;border:1px solid #ffffff55;margin-top:20px}
+.float{position:fixed;bottom:-40px;z-index:1;animation:rise linear forwards;opacity:.7}
+.confetti{position:fixed;top:-30px;z-index:9;animation:fall 3s linear forwards}
+@keyframes pulse{50%{transform:scale(1.13)}}@keyframes pop{from{opacity:0;transform:scale(.65)}to{opacity:1;transform:scale(1)}}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+@keyframes fall{to{transform:translateY(115vh) rotate(720deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="card">
+<section id="proposal">
+<div class="heart">💖</div>
+<h1>Urmi ❤️</h1>
+<p>I have something special to ask you...</p>
+<div class="question">Will you be my forever? 🥺💍</div>
+<div class="arena" id="arena">
+<button id="yes">YES 💕</button>
+<button id="no">NO 🙈</button>
+</div>
+<div class="note">Try pressing “NO”... if you can catch it 😏</div>
+</section>
+
+<section id="success" class="hidden">
+<div class="big">💞</div>
+<h1>She said YES! 🎉</h1>
+<p>Urmi, you just made this moment unforgettable. ❤️</p>
+<p>Here's to our story, our memories, and everything still waiting for us. ✨</p>
+<button class="reset" onclick="location.reload()">Replay ↻</button>
+</section>
+</div>
+
+<script>
+const no=document.getElementById("no"),arena=document.getElementById("arena");
+function escapeNo(){
+ const a=arena.getBoundingClientRect(),b=no.getBoundingClientRect();
+ no.style.left=Math.max(0,Math.random()*(a.width-b.width))+"px";
+ no.style.top=Math.max(0,Math.random()*(a.height-b.height))+"px";
+ no.style.transform="none";
+}
+["mouseenter","pointerdown","touchstart"].forEach(e=>no.addEventListener(e,x=>{x.preventDefault();escapeNo()}));
+document.getElementById("yes").onclick=()=>{
+ document.getElementById("proposal").classList.add("hidden");
+ document.getElementById("success").classList.remove("hidden");
+ for(let i=0;i<100;i++){
+  let e=document.createElement("div");e.className="confetti";
+  e.textContent=["💖","💕","❤️","✨","🎉","💗"][Math.floor(Math.random()*6)];
+  e.style.left=Math.random()*100+"vw";e.style.fontSize=14+Math.random()*24+"px";
+  e.style.animationDelay=Math.random()*.7+"s";document.body.appendChild(e);
+  setTimeout(()=>e.remove(),4000);
+ }
+};
+setInterval(()=>{
+ let e=document.createElement("div");e.className="float";
+ e.textContent=["❤","💗","💕","✨"][Math.floor(Math.random()*4)];
+ e.style.left=Math.random()*100+"vw";e.style.fontSize=15+Math.random()*20+"px";
+ e.style.animationDuration=5+Math.random()*5+"s";document.body.appendChild(e);
+ setTimeout(()=>e.remove(),10000);
+},450);
+</script>
+</body>
+</html>

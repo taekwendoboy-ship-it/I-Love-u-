@@ -1,0 +1,1 @@
+Proposal game personalized for Urmi. Upload index.html to GitHub Pages or Vercel.
